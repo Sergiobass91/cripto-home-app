@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    background-color: rgb(44, 47, 52);
-    color: white;
+.single-coin {
+    @apply grid grid-rows-1 grid-cols-1 sm:grid-cols-6 items-center justify-items-start bg-[#293143] rounded my-2 hover:bg-[#3371A7] text-white hover:transition-all hover:duration-100 hover:ease-in;
 }
