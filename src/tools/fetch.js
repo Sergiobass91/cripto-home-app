@@ -14,6 +14,10 @@ export const ajax = async (endpoint, options = null) => {
       ? { ...HEADER_BASE, body: JSON.stringify(options) }
       : { ...HEADER_BASE }
   );
+
+  if (!fetchCall.ok)
+    return new Error(console.log("Error en llamado a fetch: ", fetchCall));
+    
   const res = await fetchCall.json();
   return res;
 };
