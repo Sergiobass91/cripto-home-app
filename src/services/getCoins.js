@@ -1,4 +1,5 @@
 import { ajax } from '../tools/fetch';
+import { URL_BASE, HEADER_BASE } from "../models/commonheader";
 
 export const getCoins = async (path, fiat) => {
     const body = {
@@ -10,5 +11,5 @@ export const getCoins = async (path, fiat) => {
         meta: true,
       };
 
-    return await ajax(path, body);
+    return await ajax(URL_BASE, path, HEADER_BASE, body);
 };

@@ -14,7 +14,7 @@ const App = () => {
 
     (async () => {
       if( fiats.length === 0 ) {
-        setfiats(await getFiats("/fiats/all"));
+        setfiats(await getFiats( "/fiats/all"));
       }
 
       setcoins(await getCoins("/coins/list", currentFiat));
