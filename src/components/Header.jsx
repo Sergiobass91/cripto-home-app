@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Route, Routes, Link } from "react-router-dom";
 import { getOverview } from "../services/getOverview";
 import { addLocalCurrency } from "../models/commonCurrency";
 import { getFiats } from "../services/getFiats";
@@ -12,8 +13,6 @@ const Header = () => {
   const [fiats, setfiats] = useState([]);
 
   const currentFiat = useContext(FiatContext);
-
-  // const [currentFiat, setCurrentFiat] = useState("USD");
 
   useEffect(() => {
 
@@ -29,12 +28,17 @@ const Header = () => {
 
   return (
       <header className="flex justify-around h-48 md:h-40 bg-[#293143] text-white">
-        <img
+        {/* <img
           className="absolute left-1 top-0 md:top-6 invisible sm:visible"
           src="src\assets\icons\ch_logo.png"
-        />
-        <div className="flex flex-col text-center justify-around w-3/5">
-          <h1 className="font-serif text-4xl">Cripto Home</h1>
+        /> */}
+        <div className="flex flex-col text-center justify-around w-3/4">
+          <ul className="flex gap-4 text-xl justify-end pt-2">
+            <Link to="signup"> Sign Up</Link>
+            <Link to="login"> Login</Link>
+            <Link to="about"> About Us</Link>
+          </ul>
+          <h1 className="font-serif text-4xl pb-8">Cripto Home</h1>
           {(overview && (
             <div className="flex justify-around flex-wrap">
               <strong className="text-green-500">
