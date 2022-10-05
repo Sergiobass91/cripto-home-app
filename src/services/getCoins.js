@@ -7,7 +7,7 @@ export const getCoins = async (path, fiat) => {
         sort: "rank",
         order: "ascending",
         offset: 0,
-        limit: 100,
+        limit: 50,
         meta: true,
       };
 

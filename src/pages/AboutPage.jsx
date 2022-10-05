@@ -1,17 +1,18 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const AboutPage = () => {
   
   const history = useNavigate();
 
   return (
-    <div>
-      <h2>About page</h2>
+    <>
+      <Header/>
       <div>
-        <button onClick={() => history("/")}>Go to home</button>
+        <h1 className="text-4xl text-center pt-8">About page</h1>
+        <button className="bg-orange-400" onClick={() => history("/")}>Go to home</button>
       </div>
-    </div>
+    </>
   );
 };
 

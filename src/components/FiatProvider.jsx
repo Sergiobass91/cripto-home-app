@@ -25,7 +25,6 @@ const FiatProvider = () => {
 
   return (
     <FiatContext.Provider value={currentFiat}>
-      <Header />
       <Search onChange={fiatHandler}/>
       <CoinList />
     </FiatContext.Provider>

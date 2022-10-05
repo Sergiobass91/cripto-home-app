@@ -1,4 +1,3 @@
-import React from "react";
 import { addLocalCurrency } from "../models/commonCurrency";
 
 const Coin = ( {coin, fiat} ) => {
