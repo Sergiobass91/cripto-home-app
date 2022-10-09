@@ -7,3 +7,7 @@ export const addLocalCurrency = (rate, fiat) => {
     })
   );
 };
+
+export const deltaPercentage = (delta) => {
+  return `${Number.parseFloat(`${(delta - 1) * 100}%`).toFixed(2)}%`;
+};

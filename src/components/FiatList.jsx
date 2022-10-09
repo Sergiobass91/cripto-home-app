@@ -1,16 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getFiats } from "../services/getFiats";
-
-const Search = ( {onChange} ) => {
-
-  const [fiats, setfiats] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      fiats.length === 0 ? setfiats(await getFiats("/fiats/all")) : fiats;
-      console.log("file: Search.jsx ~ setfiats");
-    })(); //?auto invoke
-  }, []);
+const FiatList = ( {onChange, fiats} ) => {
 
   return (
     <div>
@@ -32,4 +20,4 @@ const Search = ( {onChange} ) => {
   );
 };
 
-export default Search;
+export default FiatList;

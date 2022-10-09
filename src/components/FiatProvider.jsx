@@ -3,7 +3,7 @@ import { getFiats } from "../services/getFiats";
 import { getCredits } from "../services/getCredits";
 import Header from "./Header";
 import CoinList from "./CoinList";
-import Search from "./Search";
+import FiatList from "./FiatList";
 
 export const FiatContext = createContext();
 
@@ -26,7 +26,7 @@ const FiatProvider = () => {
   return (
     <FiatContext.Provider value={currentFiat}>
       <Header />
-      <Search onChange={fiatHandler}/>
+      <FiatList onChange={fiatHandler} fiats={fiats}/>
       <CoinList />
     </FiatContext.Provider>
   );
