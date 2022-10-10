@@ -15,6 +15,7 @@ const CoinList = () => {
   const fiat = useContext(FiatContext);
 
   useEffect(() => {
+    setLoading(true);
     (async () => {
       setCoins(await getCoins("/coins/list", fiat, 20, page));
       console.log("file: CoinList.jsx ~ useEffect");
@@ -38,7 +39,7 @@ const CoinList = () => {
       <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage}/>
       <main className="flex justify-center">
         <div className="w-3/5">
-          <div className="flex justify-evenly">
+          <div className="grid grid-cols-6">
             <p className="mx-12 text-teal-500">Symbol</p>
             <p className="text-teal-500">Name</p>
             <p className="text-teal-500">Code</p>
@@ -46,7 +47,6 @@ const CoinList = () => {
             <p className="text-teal-500">Volume</p>
             <p className="text-teal-500">Market Capital</p>
           </div>
-          {/* { (search.length ==! 0 && results.length < 1)  && (<h1 className="text-center mt-20 text-4xl">Coin not found</h1>)} */}
           {results && (
             results.map((coin) => {
             return <Coin key={coin.code} coin={coin} fiat={fiat} loading={loading}></Coin>;

@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import LoginForm from "../components/LoginForm";
+import Footer from "../components/Footer";
 
 const SignUpPage = () => {
-
   const history = useNavigate();
 
   return (
     <div>
-      <h2>SignUp Page</h2>
-      <div>
-        <button onClick={() => history("/")}>Go to home</button>
-      </div>
+      {/* <Header /> */}
+      <LoginForm />
+      {/* <Footer/> */}
     </div>
   );
 };

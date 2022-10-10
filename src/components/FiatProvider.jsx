@@ -4,6 +4,7 @@ import { getCredits } from "../services/getCredits";
 import Header from "./Header";
 import CoinList from "./CoinList";
 import FiatList from "./FiatList";
+import Footer from "./Footer";
 
 export const FiatContext = createContext();
 
@@ -28,6 +29,7 @@ const FiatProvider = () => {
       <Header />
       <FiatList onChange={fiatHandler} fiats={fiats}/>
       <CoinList />
+      {/* <Footer/> */}
     </FiatContext.Provider>
   );
 };

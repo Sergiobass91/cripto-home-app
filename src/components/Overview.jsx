@@ -43,7 +43,7 @@ const Overview = () => {
             </span>
           </strong>
         </div>
-      )) || <h3>loading...</h3>}
+      )) || <h3>Loading...</h3>}
     </>
   );
 };

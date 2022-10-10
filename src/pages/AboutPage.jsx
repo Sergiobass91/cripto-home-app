@@ -7,8 +7,8 @@ const AboutPage = () => {
 
   return (
     <>
-      <Header/>
-      <div>
+      {/* <Header/> */}
+      <div className="h-screen">
         <h1 className="text-4xl text-center pt-8">About page</h1>
         <button className="bg-orange-400" onClick={() => history("/")}>Go to home</button>
       </div>
