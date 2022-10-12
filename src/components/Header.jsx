@@ -1,13 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import { FiatContext } from "./FiatProvider";
 import NavBar from "./NavBar";
 import Overview from "./Overview";
 
 const Header = () => {
-
-  const currentFiat = useContext(FiatContext);
-  
-  useEffect(() => {}, [currentFiat]);
 
   return (
     <header className="flex justify-around h-48 md:h-40 bg-[#293143] text-white">

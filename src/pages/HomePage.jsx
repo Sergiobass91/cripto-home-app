@@ -1,9 +1,13 @@
-import FiatProvider from "../components/FiatProvider";
+import CoinList from "../components/CoinList";
+import FiatList from "../components/FiatList";
 
 const HomePage = () => {
   return (
-    <FiatProvider/>
+    <>
+      <FiatList />
+      <CoinList />
+    </>
   );
-}
+};
 
 export default HomePage;

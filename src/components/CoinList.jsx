@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Coin from "./Coin";
 import { getCoins } from "../services/getCoins";
-import { FiatContext } from "./FiatProvider";
 import Pagination from "./Pagination";
 
 const CoinList = () => {
@@ -12,16 +12,18 @@ const CoinList = () => {
   const [totalPage, setTotalPage] = useState(980); //TODO
   const [loading, setLoading] = useState(true);
 
-  const fiat = useContext(FiatContext);
+  const { currency } = useSelector((state) => state.fiat);
 
   useEffect(() => {
+
     setLoading(true);
+
     (async () => {
-      setCoins(await getCoins("/coins/list", fiat, 20, page));
-      console.log("file: CoinList.jsx ~ useEffect");
+      setCoins(await getCoins("/coins/list", currency, 20, page));
     })();
+
     setLoading(false);
-  }, [fiat, page]);
+  }, [currency, page]);
 
   //buscar moneda especifica
   const handleChange = (e) => setSearch(e.target.value);
@@ -49,7 +51,7 @@ const CoinList = () => {
           </div>
           {results && (
             results.map((coin) => {
-            return <Coin key={coin.code} coin={coin} fiat={fiat} loading={loading}></Coin>;
+            return <Coin key={coin.code} coin={coin} fiat={currency} loading={loading}></Coin>;
             })
           )}
         </div>

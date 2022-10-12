@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import { FiatContext } from "./FiatProvider";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { getOverview } from "../services/getOverview";
 import { addLocalCurrency } from "../models/commonCurrency";
 
 const Overview = () => {
 
   const [overview, setOverwise] = useState(null);
-
-  const currentFiat = useContext(FiatContext);
+  const { currency } = useSelector((state) => state.fiat);
 
   useEffect(() => {
+
     (async () => {
-      setOverwise(await getOverview("/overview", currentFiat));
-      console.log("file: OverviewHeader.jsx ~ useEffect");
+      setOverwise(await getOverview("/overview", currency));
     })();
-  }, [currentFiat]);
+
+  }, [currency]);
 
   return (
     <>
@@ -24,14 +24,14 @@ const Overview = () => {
             Capital:
             <span className="text-white">
               {" "}
-              {addLocalCurrency(overview.cap, currentFiat)}
+              {addLocalCurrency(overview.cap, currency)}
             </span>
           </strong>
           <strong className="text-green-500">
             Volume:
             <span className="text-white">
               {" "}
-              {addLocalCurrency(overview.volume, currentFiat)}
+              {addLocalCurrency(overview.volume, currency)}
             </span>
           </strong>
 
@@ -39,7 +39,7 @@ const Overview = () => {
             Liquidity:
             <span className="text-white">
               {" "}
-              {addLocalCurrency(overview.liquidity, currentFiat)}
+              {addLocalCurrency(overview.liquidity, currency)}
             </span>
           </strong>
         </div>
