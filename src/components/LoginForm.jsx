@@ -5,15 +5,15 @@ const LoginForm = () => {
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
-          for="username"
+          for="email"
         >
-          Username
+          Email
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="username"
+          id="email"
           type="text"
-          placeholder="Username"
+          placeholder="your_email@gmail.com"
         />
       </div>
       <div className="mb-6">
