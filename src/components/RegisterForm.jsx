@@ -16,9 +16,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       await signUp(emailRef.current.value, passwordRef.current.value);
-
-      dispatch(setAuth({login: true}))
-
+      dispatch(setAuth({logged: true}))
       navigate("/");
     }
     catch (error) {
