@@ -15,16 +15,23 @@ const NavBar = () => {
   }
 
   return (
-      <ul className="hidden md:flex gap-4 text-2xl justify-end pt-2">
-        <Link className="hover:text-green-400" to="/"> Home |</Link>
-        <Link className="hover:text-green-400" to="about"> About Us |</Link>
+      <ul className="hidden w-[90%] md:flex gap-4 text-2xl justify-end pt-2">
+        {/* <Link className="hover:text-green-400" to="/"> Home |</Link> */}
+        {/* <Link className="hover:text-green-400" to="about"> About Us |</Link> */}
         
         {!logged && 
-          (<>
-            <Link className="hover:text-green-400" to="signup"> Sign up |</Link>
-            <Link className="hover:text-green-400" to="login"> Log in |</Link>
-          </>
-          ) || (<button onClick={handleLogOut} className="hover:text-green-400" to="about"> Log out |</button>)
+          (
+            <>
+              <Link className="hover:text-green-400" to="signup"> Sign up |</Link>
+              <Link className="hover:text-green-400" to="login"> Log in |</Link>
+            </>
+          ) || 
+          (
+            <>
+              <Link className="hover:text-green-400" to="wallet"> My Wallet |</Link>
+              <button onClick={handleLogOut} className="hover:text-green-400" to="about"> Log out |</button>
+            </>
+          )
         }
       </ul>
   );

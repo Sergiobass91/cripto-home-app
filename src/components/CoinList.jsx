@@ -4,10 +4,13 @@ import Coin from "./Coin";
 import { getCoins } from "../services/getCoins";
 import Pagination from "./Pagination";
 
+
+
 const CoinList = () => {
 
   const [search, setSearch] = useState("");
   const [coins, setCoins] = useState([]);
+  const [Searchcoins, setSearchCoins] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(980); //TODO
   const [loading, setLoading] = useState(true);
@@ -23,18 +26,24 @@ const CoinList = () => {
     })();
 
     setLoading(false);
-  }, [currency, page]);
+  }, [currency, page, Searchcoins]);
 
   //buscar moneda especifica
-  const handleChange = (e) => setSearch(e.target.value);
+  const handleChange = async (e) => {
+    const _targetSearch = e.target.value;
+    setSearchCoins(_targetSearch ? await getCoins("/coins/list", currency, 400, page) : []);
+    setSearch(_targetSearch);
+  }
 
   //filtra resultados
-  const results = !search ? coins : coins.filter((val) => val.name.toLowerCase().includes(search.toLowerCase()));
+  const results = !search ? Searchcoins : Searchcoins.filter((val) => val.name.toLowerCase().includes(search.toLowerCase()));
 
   //Paginador {
   const handleNextPage = () => setPage(page +1);
   const handlePrevPage = () => page !== 0 ? setPage(page - 1) : setPage(page);
   //}
+
+  console.log(results.length)
 
   return (
     <>
@@ -49,11 +58,14 @@ const CoinList = () => {
             <p className="text-teal-500">Volume</p>
             <p className="text-teal-500">Market Capital</p>
           </div>
-          {results && (
-            results.map((coin) => {
+          {results.length === 0 && (
+            coins.map((coin) => {
             return <Coin key={coin.code} coin={coin} fiat={currency} loading={loading}></Coin>;
             })
-          )}
+          ) || (results.map((coin) => {
+            return <Coin key={coin.code} coin={coin} fiat={currency} loading={loading}></Coin>;
+            }))
+          }
         </div>
       </main>
     </>
