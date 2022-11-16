@@ -4,7 +4,6 @@ import {
   onAuthStateChanged,
   signOut
 } from "firebase/auth";
-import { useEffect } from "react";
 import { auth } from "../auth/firebase_config";
 
 export const signUp = (email, password) =>

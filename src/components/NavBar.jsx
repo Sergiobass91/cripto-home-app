@@ -16,8 +16,7 @@ const NavBar = () => {
 
   return (
       <ul className="hidden w-[90%] md:flex gap-4 text-2xl justify-end pt-2">
-        {/* <Link className="hover:text-green-400" to="/"> Home |</Link> */}
-        {/* <Link className="hover:text-green-400" to="about"> About Us |</Link> */}
+        <Link className="hover:text-green-400" to="/"> Home |</Link>
         
         {!logged && 
           (

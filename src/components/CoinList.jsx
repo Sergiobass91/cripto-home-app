@@ -4,13 +4,11 @@ import Coin from "./Coin";
 import { getCoins } from "../services/getCoins";
 import Pagination from "./Pagination";
 
-
-
 const CoinList = () => {
 
   const [search, setSearch] = useState("");
   const [coins, setCoins] = useState([]);
-  const [Searchcoins, setSearchCoins] = useState([]);
+  const [SearchCoins, setSearchCoins] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(980); //TODO
   const [loading, setLoading] = useState(true);
@@ -26,7 +24,7 @@ const CoinList = () => {
     })();
 
     setLoading(false);
-  }, [currency, page, Searchcoins]);
+  }, [currency, page, SearchCoins]);
 
   //buscar moneda especifica
   const handleChange = async (e) => {
@@ -36,18 +34,16 @@ const CoinList = () => {
   }
 
   //filtra resultados
-  const results = !search ? Searchcoins : Searchcoins.filter((val) => val.name.toLowerCase().includes(search.toLowerCase()));
+  const results = !search ? SearchCoins : SearchCoins.filter((val) => val.name.toLowerCase().includes(search.toLowerCase()));
 
   //Paginador {
   const handleNextPage = () => setPage(page +1);
   const handlePrevPage = () => page !== 0 ? setPage(page - 1) : setPage(page);
   //}
 
-  console.log(results.length)
-
   return (
     <>
-      <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage}/>
+      <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} SearchCoins={SearchCoins}/>
       <main className="flex justify-center">
         <div className="w-3/5">
           <div className="grid grid-cols-6">
