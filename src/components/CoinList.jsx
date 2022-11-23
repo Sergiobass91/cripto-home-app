@@ -43,8 +43,6 @@ const CoinList = () => {
   const handlePrevPage = () => page !== 0 ? setPage(page - 1) : setPage(page);
   //}
 
-  console.log(results.length)
-
   return (
     <>
       <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage}/>

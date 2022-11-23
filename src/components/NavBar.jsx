@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../auth/useAuth";
 import { setAuth } from "../reducers/authSlice";
@@ -6,12 +6,13 @@ import { setAuth } from "../reducers/authSlice";
 const NavBar = () => {
 
   const { logged } = useSelector((state) => state.login);
-
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleLogOut = async () => {
     await logOut();
     dispatch(setAuth({logged: false}))
+    navigate("/");
   }
 
   return (

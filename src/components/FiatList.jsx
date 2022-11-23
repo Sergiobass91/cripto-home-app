@@ -30,7 +30,6 @@ const FiatList = () => {
       <label>Currency: </label>
       <select
         defaultValue={currency}
-        className=""
         onChange={fiatHandlerOnChange}
         // options={ parseJson }
         // options={"USD"}

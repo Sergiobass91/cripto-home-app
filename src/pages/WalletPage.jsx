@@ -1,9 +1,10 @@
 import React from 'react';
+import Stack from '../components/Stack';
 
 const WalletPage = () => {
   return (
     <div>
-      <h1>My Wallet</h1>
+      <Stack/>
     </div>
   );
 }

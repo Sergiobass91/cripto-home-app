@@ -14,12 +14,6 @@ const Pagination = ({
 
   return (
     <div className="flex justify-around mb-8">
-      {/* <input
-        placeholder="Search coin..."
-        value={search}
-        onChange={handleChange}
-        className="block appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-      ></input> */}
       <DebounceInput
         className="block appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         minLength={2}
