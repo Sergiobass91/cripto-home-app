@@ -12,3 +12,5 @@ export const ajax = async (url_base, endpoint, header, options = null) => {
   const res = await fetchCall.json();
   return res;
 };
+
+export const fetcher = (...args) => fetch(...args).then(fetch(res => res.json()));
