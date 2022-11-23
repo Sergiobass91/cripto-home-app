@@ -72,5 +72,4 @@ const Stack = () => {
   );
 }
 
-
 export default Stack;
