@@ -26,9 +26,10 @@ const FiatList = () => {
 
 
   return (
-    <div className="pl-4 pt-2 inline-grid grid-cols-3 row-span-1 text-center items-center">
-      <label>Currency: </label>
+    <div className="flex text-center items-center justify-start gap-2">
+      <label className="text-[#293143]">Currency: </label>
       <select
+      className="border rounded bg-white text-[#293143] h-10 pl-5 pr-16 text-sm focus:outline-none"
         defaultValue={currency}
         onChange={fiatHandlerOnChange}
         // options={ parseJson }

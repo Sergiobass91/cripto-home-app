@@ -45,14 +45,14 @@ const CoinList = () => {
     <>
       <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} SearchCoins={SearchCoins}/>
       <main className="flex justify-center">
-        <div className="w-3/5">
-          <div className="grid grid-cols-6">
-            <p className="mx-12 text-teal-500">Symbol</p>
-            <p className="text-teal-500">Name</p>
-            <p className="text-teal-500">Code</p>
-            <p className="text-teal-500">Price</p>
-            <p className="text-teal-500">Volume</p>
-            <p className="text-teal-500">Market Capital</p>
+        <div className="w-full max-w-[1000px]">
+          <div className="hidden sm:grid grid-cols-12">
+            <p className="text-teal-500 col-span-1">Symbol</p>
+            <p className="text-teal-500 col-span-2 pl-2">Name</p>
+            <p className="text-teal-500 col-span-2">Code</p>
+            <p className="text-teal-500 col-span-2">Price</p>
+            <p className="text-teal-500 col-span-2">Volume</p>
+            <p className="text-teal-500 col-span-2">Market Capital</p>
           </div>
           {results.length === 0 && (
             coins.map((coin) => {

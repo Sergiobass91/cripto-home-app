@@ -10,9 +10,9 @@ const Pagination = ({
   SearchCoins,
 }) => {
   return (
-    <div className="flex justify-around mb-8">
+    <div className="flex flex-col sm:flex-row sm:justify-between gap-3 w-full max-w-[1000px] mb-8">
       <DebounceInput
-        className="block appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        className="block appearance-none w-full max-w-[500px] bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         minLength={2}
         debounceTimeout={300}
         onChange={handleChange}
@@ -23,7 +23,7 @@ const Pagination = ({
         {SearchCoins.length === 0 && (
           <div className="flex justify-center items-center space-x-3">
             <button
-              className="border rounded-md bg-gray-100 px-2 pb-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
+              className="border rounded-md bg-gray-100 p-3 flex items-center justify-center text-2xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
               onClick={handlePrevPage}
             >
               {"<"}
@@ -34,7 +34,7 @@ const Pagination = ({
             </span>
 
             <button
-              className="border rounded-md bg-gray-100 px-2 pb-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
+              className="border rounded-md bg-gray-100 p-3 flex items-center justify-center text-2xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
               onClick={handleNextPage}
             >
               {">"}

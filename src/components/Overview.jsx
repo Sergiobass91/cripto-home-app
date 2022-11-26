@@ -19,7 +19,7 @@ const Overview = () => {
   return (
     <>
       {(overview && (
-        <div className="flex justify-around flex-wrap">
+        <div className="flex justify-around gap-2 flex-wrap">
           <strong className="text-green-500">
             Capital:
             <span className="text-white">

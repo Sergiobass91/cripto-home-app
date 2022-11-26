@@ -26,9 +26,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="w-[90%] mt-8 m-auto h-screen">
+    <div className="mt-8 mx-auto min-h-[calc(100vh-201px)]">
       <form
-        className="bg-white shadow-md  px-8 pt-6 pb-8 mb-4"
+        className="bg-white shadow-md max-w-[500px] mx-auto  p-8 mb-4"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
