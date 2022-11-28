@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getFiats } from "../services/getFiats";
 import { useDispatch, useSelector } from "react-redux";
 import { setFiat } from "../reducers/fiatSlice";
-// import Select from 'react-select';
+import Select from 'react-select';
 
 const FiatList = () => {
 
@@ -24,25 +24,19 @@ const FiatList = () => {
     );
   }
 
-
   return (
     <div className="flex text-center items-center justify-start gap-2">
-      <label className="text-[#293143]">Currency: </label>
-      <select
-      className="border rounded bg-white text-[#293143] h-10 pl-5 pr-16 text-sm focus:outline-none"
+      <label className="text-[#293143]">Tipo de Cambio: </label>
+      <Select
+        // className="border rounded bg-white text-[#293143] h-10 pl-5 pr-16 text-sm focus:outline-none"
         defaultValue={currency}
         onChange={fiatHandlerOnChange}
-        // options={ parseJson }
-        // options={"USD"}
+        options={ fiats.map((fiat) => ( {label: fiat.code, value: fiat.code} ))}
       >
-        {fiats.map((fiat) => (
-          <option value={fiat.code} key={fiat.code}>
-            {fiat.code}
-          </option>
-        ))}
-      </select>
+      </Select>
     </div>
   );
-};
+
+}
 
 export default FiatList;

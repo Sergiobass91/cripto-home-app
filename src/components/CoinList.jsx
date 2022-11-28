@@ -44,8 +44,8 @@ const CoinList = () => {
   return (
     <>
       <Pagination search={search} page={page} totalPage={totalPage} handleChange={handleChange} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} SearchCoins={SearchCoins}/>
-      <main className="flex justify-center">
-        <div className="w-full max-w-[1000px]">
+      <main className="flex justify-center ">
+        <div className="w-full max-w-[1000px] ">
           <div className="hidden sm:grid grid-cols-12">
             <p className="text-teal-500 col-span-1">Symbol</p>
             <p className="text-teal-500 col-span-2 pl-2">Name</p>

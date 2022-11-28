@@ -17,7 +17,6 @@ const NavBar = () => {
 
   return (
     <ul className="md:flex gap-4 text-2xl justify-between pt-2">
-      {/* <Link className="hover:text-green-400" to="/"> Home |</Link> */}
       <div className="flex items-center gap-2">
         <img
           className="w-14 h-14"
@@ -48,13 +47,13 @@ const NavBar = () => {
           </>
         )) || (
           <>
-            <Link className="hover:text-green-400" to="wallet">
+            <Link className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4" to="wallet">
               {" "}
               <strong>My Wallet</strong>
             </Link>
             <button
               onClick={handleLogOut}
-              className="hover:text-green-400"
+              className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4"
               to="about"
             >
               <strong>Log out</strong>

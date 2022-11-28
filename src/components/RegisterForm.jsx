@@ -25,7 +25,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <div className="mt-8 mx-auto min-h-[calc(100vh-201px)]">
+    <div className="mt-8 mx-auto min-h-[calc(100vh-240px)]">
       <form
         className="bg-white shadow-md max-w-[500px] mx-auto  p-8 mb-4"
         onSubmit={handleSubmit}

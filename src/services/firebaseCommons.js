@@ -30,12 +30,15 @@ export const dataCollectionOn = async (db, uid) => {
   return data;
 };
 
-export const writeCoinDocument = async(db, uid, code, quantity, lastValue=null) => {
+export const writeCoinDocument = async(db, uid, code, quantity, lastValue=null, deltaHour, icon) => {
   try {
     await setDoc(doc(db, `portfolio/${uid}/coins/${code}`), {
       quantity,
       code,
+      icon,
       initValue: lastValue,
+      deltaHour,
+      icon,
       date: (new Date).toLocaleString("es-AR", {  hour: "numeric", minute: "numeric", second: "numeric", year: "2-digit", month: "2-digit", day: "2-digit"}),
     });
     console.log("Document written for ID: " + uid);
