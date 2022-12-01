@@ -8,20 +8,16 @@ import Layout from "./components/Layout";
 import WalletPage from "./pages/WalletPage";
 
 const App = () => {
+
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <HomePage />
-            }
-          />
+          <Route index element={<HomePage />}/>
           <Route path="about" element={<AboutPage />} />
           <Route path="signup" element={<SignUpPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="wallet" element={<WalletPage />} />
+          <Route path="wallet" element={<WalletPage/>} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

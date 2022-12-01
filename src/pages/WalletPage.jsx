@@ -1,16 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import HomePage from "./HomePage";
+import { toast } from "react-toastify";
+import { StyleToastGeneric } from "../models/commonToast";
 import Stack from '../components/Stack';
 
 const WalletPage = () => {
 
   const { logged } = useSelector((state) => state.login);
-  const navigate = useNavigate();
 
-  if (!logged)
-    navigate("/");
-
+  if (!logged) {
+    toast.warning("Debes crear un usuario para acceder a la billetera", StyleToastGeneric)
+    return <Navigate to="/signup"/>;
+  }
+  
   return (
     <Stack/>
   );

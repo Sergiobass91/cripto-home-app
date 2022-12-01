@@ -20,7 +20,7 @@ const FiatList = () => {
   const dispatch = useDispatch();
   const fiatHandlerOnChange = async (e) => {
     dispatch(
-      setFiat({currency: e.currentTarget.value})
+      setFiat({currency: e.value})
     );
   }
 

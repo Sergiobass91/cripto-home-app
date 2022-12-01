@@ -1,11 +1,15 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logIn, onAuth } from "../auth/useAuth";
+import { logIn, onAuth, resetUserPassword } from "../auth/useAuth";
 import { setAuth } from "../reducers/authSlice";
+import { ToastContainer } from "react-toastify";
+// import { toast } from "react-toastify";
+import { errorToast } from "../models/commonToast";
+import InputForm from "./pure/InputForm";
+import ButtonForm from "./pure/ButtonForm";
 
 const LoginForm = () => {
-
   const navigate = useNavigate();
 
   const emailRef = useRef();
@@ -17,65 +21,48 @@ const LoginForm = () => {
     try {
       await logIn(emailRef.current.value, passwordRef.current.value);
       onAuth();
-      dispatch(setAuth({logged: true}))
+      dispatch(setAuth({ logged: true }));
       navigate("/");
+    } catch (error) {
+      errorToast("Ups, hubo un error al iniciar sesión");
     }
-    catch (error) {
-      alert(`Error al loggear el usuario: ${error.message}`);
-    }
+  };
+
+  const handleResetPassword = async()=> {
+    await resetUserPassword(emailRef.current.value);
   }
 
   return (
     <div className="mt-8 mx-auto min-h-[calc(100vh-240px)]">
       <form
-        className="bg-white shadow-md max-w-[500px] mx-auto  p-8 mb-4"
+        className="bg-white shadow-lg border rounded max-w-[600px] mx-auto  p-8 mb-4"
         onSubmit={handleSubmit}
       >
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="text"
-            placeholder="your_email@gmail.com"
-            ref={emailRef}
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******************"
-            ref={passwordRef}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Log In
-          </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Forgot Password?
-          </a>
-        </div>
+        <InputForm
+          typeRef={emailRef}
+          typeInput="email"
+          id="email"
+          text="E-mail"
+        />
+        <InputForm
+          typeRef={passwordRef}
+          typeInput="password"
+          id="password"
+          text="Contraseña"
+        />
+
+        <ButtonForm
+          text="Iniciar Sesión"
+          classes="w-full bg-green-500 text-white font-semibold text-lg p-3 rounded-md hover:bg-green-600"
+        />
+        <Link
+          className="inline-block font-bold text-sm mt-3 text-orange-600 hover:text-orange-800"
+          to="/resetPassword"
+        >
+          ¿Olvidaste tu contraseña?
+        </Link>
       </form>
+      <ToastContainer />
     </div>
   );
 };
