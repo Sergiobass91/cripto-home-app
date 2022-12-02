@@ -5,7 +5,7 @@ import { errorToast, successToast } from "../models/commonToast";
 import InputForm from "./pure/InputForm";
 
 ReactModal.setAppElement("#root");
-const Modal = ({ onOpen, setToClose }) => {
+const ModalForm = ({ onOpen, setToClose }) => {
   const emailRef = useRef();
 
   const handleCloseModal = () => {
@@ -73,4 +73,4 @@ const Modal = ({ onOpen, setToClose }) => {
   );
 };
 
-export default Modal;
+export default ModalForm;

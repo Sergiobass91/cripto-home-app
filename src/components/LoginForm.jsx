@@ -5,7 +5,7 @@ import { logIn, onAuth, signInGoogleAccount } from "../auth/useAuth";
 import { setAuth } from "../reducers/authSlice";
 import { ToastContainer } from "react-toastify";
 import { errorToast, successToast } from "../models/commonToast";
-import Modal from "./ModalForm";
+import ModalForm from "./ModalForm";
 import InputForm from "./pure/InputForm";
 import ButtonForm from "./pure/ButtonForm";
 import GoogleIcon from "../assets/icons/GoogleIcon";
@@ -82,7 +82,7 @@ const LoginForm = () => {
           </Link>
         </div>
       </form>
-      <Modal onOpen={isOpenModal} setToClose={setIsOpenModal}/>
+      <ModalForm onOpen={isOpenModal} setToClose={setIsOpenModal}/>
       <ToastContainer />
     </div>
   );
