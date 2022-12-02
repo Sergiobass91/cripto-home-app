@@ -1,37 +1,46 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { getCoins } from "../services/getCoins";
 import { getSingleCoin } from "../services/getSingleCoin";
-import { dataCollection, writeCoinDocument, deleteCoinDocument } from "../services/firebaseCommons";
-import { addLocalCurrency } from "../models/commonCurrency";
+import {
+  dataCollection,
+  writeCoinDocument,
+  deleteCoinDocument,
+} from "../services/firebaseCommons";
 import { userAuth } from "../auth/useAuth";
 import EmptyIcon from "../assets/icons/EmptyIcon";
 import Select from "react-select";
 import { ToastContainer } from "react-toastify";
 import ButtonForm from "./pure/ButtonForm";
 import CoinStack from "./pure/CoinStack";
-
+import SkeletonCoin from "./Skeleton";
+import { errorToast } from "../models/commonToast";
 const Stack = () => {
-
   const [infoToSelect, setInfoToSelect] = useState([]);
   const [singleCoin, setSingleCoin] = useState(null);
   const [code, setCode] = useState(null); //TODO: pasar a ref
   const [input, setInput] = useState(null); //TODO: pasar a ref
-  const [walletUserData, setwalletUserData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [walletUserData, setWalletUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [reloadUseEffect, SetReloadUseEffect] = useState(null); //TODO: eliminar para buscar mejor dependencia
-  const { uid } = userAuth();
+  const { uid, displayName } = userAuth();
 
   useEffect(() => {
-    console.log("paso aca");
+    setIsLoading(true);
     //carga datos para la seleccion
     (async () => {
-      infoToSelect.length === 0
-        ? setInfoToSelect(await getCoins("/coins/list", "USD", 450, 0))
-        : infoToSelect;
-      setwalletUserData(await dataCollection(uid));
+      try {
+        infoToSelect.length === 0
+          ? setInfoToSelect(await getCoins("/coins/list", "USD", 450, 0))
+          : infoToSelect;
+        setWalletUserData(await dataCollection(uid));
+      } catch (e) {
+        errorToast("Algo salió mal, por favor volvé a intentarlo");
+      } finally {
+        setIsLoading(false);
+      }
     })();
 
-    setIsLoading(false);
+    // setIsLoading(false);
   }, [singleCoin, reloadUseEffect]);
 
   //Manejo de cambio en el select
@@ -57,10 +66,9 @@ const Stack = () => {
         singleCoin.delta.hour,
         singleCoin.webp32
       );
-    } catch (e) {
-    }
+    } catch (e) {}
 
-    setwalletUserData(await dataCollection(uid));
+    setWalletUserData(await dataCollection(uid));
     const form = document.querySelector("#form");
     form.reset();
   };
@@ -68,7 +76,7 @@ const Stack = () => {
   //Elimina de la BD
   const handleRemove = async (code) => {
     await deleteCoinDocument(uid, code);
-    setwalletUserData(await dataCollection(uid));
+    setWalletUserData(await dataCollection(uid));
     SetReloadUseEffect("cambiando");
   };
 
@@ -104,14 +112,31 @@ const Stack = () => {
             className="shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ></input>
         </div>
-        <ButtonForm text="Guardar" classes="bg-blue-500 hover:bg-blue-700 text-white h-4/5 align-bottom font-boldmt-3 py-2 rounded focus:outline-none focus:shadow-outline">
+        <ButtonForm
+          text="Guardar"
+          classes="bg-blue-500 hover:bg-blue-700 text-white h-4/5 align-bottom font-boldmt-3 py-2 rounded focus:outline-none focus:shadow-outline"
+        >
           Guardar
         </ButtonForm>
       </form>
 
       <div className="w-full max-w-[1000px] mx-auto">
-        <h1 className="text-center mb-4"><strong>Tu portolio</strong></h1>
-        {(walletUserData.length === 0 && (
+        <h1 className="text-center mb-4 font-bold text-2xl">
+          Tu portolio, {displayName}
+        </h1>
+
+        <div className="grid grid-flow-col ">
+          <p className="text-teal-500 col-span-1">Crypto</p>
+          <p className="text-teal-500 col-span-1">Tienes</p>
+          <p className="text-teal-500 col-span-1">1 hora</p>
+          <p className="text-teal-500 col-span-1">Actualización</p>
+          <p className="text-teal-500 col-span-1">Borrar</p>
+        </div>
+
+        {isLoading && (
+          <SkeletonCoin count={5} width="100%" height={60} duration={2} />
+        )}
+        {!isLoading && walletUserData.length === 0 && (
           <div className="flex flex-col items-center justify-center">
             <h1>
               Parece que aun no tenes cryptos en un billetera, empeza a guardar
@@ -119,9 +144,17 @@ const Stack = () => {
             </h1>
             <EmptyIcon />
           </div>
-        )) ||
+        )}
+
+        {!isLoading &&
           walletUserData.map((data) => (
-            <CoinStack key={data.code} data={data} code={code} handleRemove={handleRemove} infoToSelect={infoToSelect}/>
+            <CoinStack
+              key={data.code}
+              data={data}
+              code={code}
+              handleRemove={handleRemove}
+              infoToSelect={infoToSelect}
+            />
           ))}
       </div>
       <ToastContainer />

@@ -33,7 +33,7 @@ const RegisterForm = () => {
   return (
     <div className="mt-8 mx-auto min-h-[calc(100vh-240px)]">
       <form
-        className="bg-white shadow-lg border rounded max-w-[600px] mx-auto  p-8 mb-4"
+        className="bg-[#293143] shadow-lg border rounded-lg max-w-[600px] mx-auto  p-8 mb-4"
         onSubmit={handleSubmit}
       >
         <InputForm
@@ -56,7 +56,7 @@ const RegisterForm = () => {
         />
 
         <Link
-          className="inline-block font-bold text-sm mt-3 text-orange-600 hover:text-orange-800"
+          className="inline-block font-bold text-sm mt-3 text-orange-500 hover:text-orange-300"
           to="/login"
         >
           ¿Ya tenés cuenta? iniciá sesión

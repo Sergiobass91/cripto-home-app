@@ -1,42 +1,57 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logIn, onAuth, resetUserPassword } from "../auth/useAuth";
+import { logIn, onAuth, signInGoogleAccount } from "../auth/useAuth";
 import { setAuth } from "../reducers/authSlice";
 import { ToastContainer } from "react-toastify";
-// import { toast } from "react-toastify";
-import { errorToast } from "../models/commonToast";
+import { errorToast, successToast } from "../models/commonToast";
+import Modal from "./ModalForm";
 import InputForm from "./pure/InputForm";
 import ButtonForm from "./pure/ButtonForm";
+import GoogleIcon from "../assets/icons/GoogleIcon";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isGoogleLogin, setIsGoogleLogin] = useState(false);
+
+  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await logIn(emailRef.current.value, passwordRef.current.value);
-      onAuth();
-      dispatch(setAuth({ logged: true }));
-      navigate("/");
-    } catch (error) {
-      errorToast("Ups, hubo un error al iniciar sesi贸n");
+
+    if(isGoogleLogin) {
+      try {
+        await signInGoogleAccount()
+        dispatch(setAuth({ logged: true }));
+        navigate("/");
+        successToast("Iniciaste sesi胣 con google");
+      }
+      catch (error) {
+        errorToast("Ups, hubo un error al iniciar sesi贸n con Google");
+  
+      }
+    } else {
+      try {
+        await logIn(emailRef.current.value, passwordRef.current.value);
+        onAuth();
+        dispatch(setAuth({ logged: true }));
+        navigate("/");
+      } catch (error) {
+        errorToast("Ups, hubo un error al iniciar sesi贸n");
+      }
     }
   };
-
-  const handleResetPassword = async()=> {
-    await resetUserPassword(emailRef.current.value);
-  }
 
   return (
     <div className="mt-8 mx-auto min-h-[calc(100vh-240px)]">
       <form
-        className="bg-white shadow-lg border rounded max-w-[600px] mx-auto  p-8 mb-4"
+        className="bg-[#293143] shadow-lg border rounded-lg max-w-[600px] mx-auto  p-8 mb-4"
         onSubmit={handleSubmit}
+        id="form"
       >
         <InputForm
           typeRef={emailRef}
@@ -55,13 +70,19 @@ const LoginForm = () => {
           text="Iniciar Sesi贸n"
           classes="w-full bg-green-500 text-white font-semibold text-lg p-3 rounded-md hover:bg-green-600"
         />
-        <Link
-          className="inline-block font-bold text-sm mt-3 text-orange-600 hover:text-orange-800"
-          to="/resetPassword"
-        >
-          驴Olvidaste tu contrase帽a?
-        </Link>
+        <div className="flex flex-wrap justify-center sm:justify-between pt-4 align-middle">
+          <button className="text-white" onClick={()=>setIsGoogleLogin(true)}>
+          <GoogleIcon />
+          </button>
+          <Link
+            className="inline-block font-bold text-sm mt-3 text-orange-500 hover:text-orange-300"
+            onClick={()=> setIsOpenModal(true)}
+          >
+            驴Olvidaste tu contrase帽a?
+          </Link>
+        </div>
       </form>
+      <Modal onOpen={isOpenModal} setToClose={setIsOpenModal}/>
       <ToastContainer />
     </div>
   );

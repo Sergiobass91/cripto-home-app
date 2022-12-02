@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Coin from "./pure/Coin";
 import { getCoins } from "../services/getCoins";
 import Pagination from "./Pagination";
+import SkeletonCoin from "./Skeleton";
 
 const CoinList = () => {
   const [search, setSearch] = useState("");
@@ -66,6 +67,7 @@ const CoinList = () => {
             <p className="text-teal-500 col-span-2">Volume</p>
             <p className="text-teal-500 col-span-2">Market Capital</p>
           </div>
+          {loading && <SkeletonCoin count={20} height={60} duration={2}/>}
           {(results.length === 0 &&
             coins.map((coin) => {
               return (
