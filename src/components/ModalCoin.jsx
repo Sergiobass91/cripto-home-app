@@ -12,7 +12,7 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
     overlay: {
       top: "40%",
       left: "50%",
-      width: "60%",
+      width: "80%",
       height: "500px",
       right: "auto",
       bottom: "auto",
@@ -33,12 +33,12 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
   return (
     <ReactModal isOpen={onOpen} style={styleForModal}>
       <div className="grid grid-cols-6 w-[60%]">
-        <p className="text-teal-500">Symbol</p>
-        <p className="text-teal-500 ">Name</p>
-        <p className="text-teal-500">Code</p>
-        <p className="text-teal-500">Price</p>
+        <p className="text-teal-500 ">Price</p>
         <p className="text-teal-500">Volume</p>
         <p className="text-teal-500">Market Capital</p>
+        <p className="text-teal-500">1 Hour</p>
+        <p className="text-teal-500">1 Day</p>
+        <p className="text-teal-500">1 Month</p>
       </div>
 
       <div className="grid grid-flow-col gap-8 pt-8">
@@ -65,7 +65,7 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
         <p className="text-white">{addLocalCurrency(coin.volume, fiat)}</p>
         <p className="text-white">{addLocalCurrency(coin.cap, fiat)}</p>
         <p className="text-white">{deltaPercentage(coin.delta.hour)}</p>
-        <p className="text-white">{deltaPercentage(coin.delta.year)}</p>
+        <p className="text-white">{deltaPercentage(coin.delta.day)}</p>
         <p className="text-white">{deltaPercentage(coin.delta.month)}</p>
       </div>
     </ReactModal>
