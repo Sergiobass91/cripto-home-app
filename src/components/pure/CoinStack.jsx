@@ -28,11 +28,11 @@ const CoinStack = ({ data, handleRemove, infoToSelect }) => {
       return "text-red-500";
     } else return "text-blue-500";
   };
-  // w-full grid grid-rows-1 px-3 py-2 grid-cols-1 sm:grid-cols-12 items-center justify-items-start
+
   return (
     <>
       <div
-        className="grid grid-rows-1 grid-cols-1 sm:grid-cols-6 items-center max-w-[650px] m-auto py-2 bg-[#364056] mb-2 rounded hover:bg-[#3371A7] text-white hover:transition-all hover:duration-100 hover:ease-in"
+        className="grid grid-rows-1 grid-cols-1 sm:grid-cols-6 items-center m-auto py-2 bg-[#364056] mb-2 rounded hover:bg-[#3371A7] text-white hover:transition-all hover:duration-100 hover:ease-in"
         key={data.code}
       >
         <img src={data.icon} className="h-10 w-10 col-span-1 mx-auto"></img>

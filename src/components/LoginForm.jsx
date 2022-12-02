@@ -20,6 +20,11 @@ const LoginForm = () => {
   const passwordRef = useRef();
   const dispatch = useDispatch();
 
+  const isDataEmpty = () => {
+    console.log(typeof passwordRef.current.value)
+    return emailRef.current.value === "" && passwordRef.current.value === ""
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,6 +40,10 @@ const LoginForm = () => {
   
       }
     } else {
+
+      if (isDataEmpty())
+        return errorToast("Debes completar todos los campos");
+
       try {
         await logIn(emailRef.current.value, passwordRef.current.value);
         onAuth();
@@ -71,11 +80,11 @@ const LoginForm = () => {
           classes="w-full bg-green-500 text-white font-semibold text-lg p-3 rounded-md hover:bg-green-600"
         />
         <div className="flex flex-wrap justify-center sm:justify-between pt-4 align-middle">
-          <button className="text-white" onClick={()=>setIsGoogleLogin(true)}>
-          <GoogleIcon />
+          <button className="w-12" onClick={()=>setIsGoogleLogin(true)}>
+            <GoogleIcon />
           </button>
           <Link
-            className="inline-block font-bold text-sm mt-3 text-orange-500 hover:text-orange-300"
+            className="font-bold text-sm text-orange-500 hover:text-orange-300"
             onClick={()=> setIsOpenModal(true)}
           >
             ¿Olvidaste tu contraseña?

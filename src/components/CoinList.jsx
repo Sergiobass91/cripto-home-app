@@ -16,13 +16,14 @@ const CoinList = () => {
   const { currency } = useSelector((state) => state.fiat);
 
   useEffect(() => {
-    setLoading(true);
-
-    (async () => {
-      setCoins(await getCoins("/coins/list", currency, 20, page));
-    })();
-
-    setLoading(false);
+    getCoins("/coins/list", currency, 20, page)
+      .then((totalCoins) => {
+        setCoins(totalCoins);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
   }, [currency, page, SearchCoins]);
 
   //buscar moneda especifica
@@ -60,15 +61,15 @@ const CoinList = () => {
       <main className="flex justify-center ">
         <div className="w-full max-w-[1000px] ">
           <div className="hidden sm:grid grid-cols-12">
-            <p className="text-teal-500 col-span-1">Symbol</p>
-            <p className="text-teal-500 col-span-2 pl-2">Name</p>
-            <p className="text-teal-500 col-span-2">Code</p>
-            <p className="text-teal-500 col-span-2">Price</p>
-            <p className="text-teal-500 col-span-2">Volume</p>
-            <p className="text-teal-500 col-span-2">Market Capital</p>
+            <p className="text-teal-500 text-center  col-span-1">Symbol</p>
+            <p className="text-teal-500  text-center col-span-2 pl-2">Name</p>
+            <p className="text-teal-500  text-center col-span-2">Code</p>
+            <p className="text-teal-500  text-center col-span-2">Price</p>
+            <p className="text-teal-500  text-center col-span-2">Volume</p>
+            <p className="text-teal-500  text-center col-span-2">Market Capital</p>
           </div>
           {loading && <SkeletonCoin count={20} height={60} duration={2}/>}
-          {(results.length === 0 &&
+          {(!loading && results.length === 0 &&
             coins.map((coin) => {
               return (
                 <Coin
@@ -79,7 +80,7 @@ const CoinList = () => {
                 ></Coin>
               );
             })) ||
-            results.map((coin) => {
+            !loading && results.map((coin) => {
               return (
                 <Coin
                   key={coin.code}

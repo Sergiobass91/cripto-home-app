@@ -18,6 +18,7 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      backgroundColor: "transparent",
     },
     content: {
       border: "1px solid #ccc",
@@ -32,22 +33,25 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
 
   return (
     <ReactModal isOpen={onOpen} style={styleForModal}>
-      <div className="grid grid-cols-6 w-[60%]">
-        <p className="text-teal-500 ">Price</p>
-        <p className="text-teal-500">Volume</p>
-        <p className="text-teal-500">Market Capital</p>
-        <p className="text-teal-500">1 Hour</p>
-        <p className="text-teal-500">1 Day</p>
-        <p className="text-teal-500">1 Month</p>
+      <div className="grid grid-cols-6">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p className="text-teal-500 text-center">Price</p>
+        <p className="text-teal-500 text-center">Volume</p>
+        <p className="text-teal-500 text-center">Market Capital</p>
+        <p className="text-teal-500 text-center">1 Hour</p>
+        <p className="text-teal-500 text-center">1 Day</p>
+        <p className="text-teal-500 text-center">1 Month</p>
       </div>
-
-      <div className="grid grid-flow-col gap-8 pt-8">
-        <button
+      <button
           onClick={handleCloseModal}
           className="text-white text-2xl absolute top-7"
         >
           X
         </button>
+      <div className="grid grid-flow-col gap-8 pt-8">
+
 
         <div className="flex items-start">
           <img

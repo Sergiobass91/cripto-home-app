@@ -32,6 +32,7 @@ const ModalForm = ({ onOpen, setToClose }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      backgroundColor: "transparent",
     },
     content: {
       border: "1px solid #ccc",

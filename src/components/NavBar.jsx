@@ -2,6 +2,7 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../auth/useAuth";
 import { setAuth } from "../reducers/authSlice";
+import LogoIcon from "../assets/icons/LogoIcon";
 
 const NavBar = () => {
 
@@ -18,10 +19,7 @@ const NavBar = () => {
   return (
     <ul className="md:flex gap-4 text-2xl justify-between pt-2">
       <div className="flex items-center gap-2">
-        <img
-          className="w-14 h-14"
-          src="src\assets\icons\ch_logo.png"
-        />
+        <LogoIcon />
         <Link className="font-serif text-4xl" to="/">
           Cripto Home
         </Link>

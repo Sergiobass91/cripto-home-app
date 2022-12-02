@@ -4,7 +4,7 @@ const InputForm = ( { typeRef, typeInput, id, text } ) => {
       <input
         type={typeInput}
         id={id}
-        className="border border-gray-200 focus:outline-none rounded-md focus:border-[#658eec] focus:shadow-sm w-full p-3 h-16"
+        className="border border-gray-200 bg-white text-black focus:outline-none rounded-md focus:border-[#658eec] focus:shadow-sm w-full p-3 h-16"
         placeholder="example"
         ref={typeRef}
       />
