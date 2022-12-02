@@ -20,14 +20,14 @@ const Overview = () => {
     <>
       {(overview && (
         <div className="flex justify-around gap-2 flex-wrap">
-          <strong className="text-green-500">
+          <strong className="text-[#f39649]">
             Capital:
             <span className="text-white">
               {" "}
               {addLocalCurrency(overview.cap, currency)}
             </span>
           </strong>
-          <strong className="text-green-500">
+          <strong className="text-[#f39649]">
             Volume:
             <span className="text-white">
               {" "}
@@ -35,7 +35,7 @@ const Overview = () => {
             </span>
           </strong>
 
-          <strong className="text-green-500">
+          <strong className="text-[#f39649]">
             Liquidity:
             <span className="text-white">
               {" "}

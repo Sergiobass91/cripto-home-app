@@ -1,5 +1,3 @@
-import * as React from "react"
-
 const DeletedIcon = (props) => (
   <svg
     viewBox="0 0 512 512"

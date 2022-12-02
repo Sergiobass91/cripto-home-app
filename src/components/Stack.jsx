@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getCoins } from "../services/getCoins";
 import { getSingleCoin } from "../services/getSingleCoin";
-import { dataCollection, writeCoinDocument, deleteCoinDocument } from "../services/firebaseCommons";
+import {
+  dataCollection,
+  writeCoinDocument,
+  deleteCoinDocument,
+} from "../services/firebaseCommons";
 import { userAuth } from "../auth/useAuth";
 import EmptyIcon from "../assets/icons/EmptyIcon";
 import Select from "react-select";
@@ -31,7 +35,7 @@ const Stack = () => {
           : infoToSelect;
         setWalletUserData(await dataCollection(uid));
       } catch (e) {
-        errorToast("Algo saliÃ³ mal, por favor volvÃ© a intentarlo");
+        errorToast("Algo saliÃÂÃÂ³ mal, por favor volvÃÂÃÂ© a intentarlo");
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +60,7 @@ const Stack = () => {
     e.preventDefault();
 
     if (code === null || input === null)
-      return errorToast("Debes completar los campos primero")
+      return errorToast("Debes completar los campos primero");
 
     try {
       await writeCoinDocument(
@@ -68,9 +72,8 @@ const Stack = () => {
         singleCoin.webp64
       );
     } catch (e) {
-      errorToast("Completa todos los campos antes")
-    }
-    finally {
+      errorToast("Completa todos los campos antes");
+    } finally {
       setInput(null);
       setCode(null);
     }
@@ -116,7 +119,7 @@ const Stack = () => {
             type="number"
             step="0.01"
             onChange={quantityHandleOnChange}
-            className="shadow appearance-none bg-white border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none text-black bg-white border rounded py-2 leading-tight focus:outline-none focus:shadow-outline"
           ></input>
         </div>
         <ButtonForm
@@ -128,17 +131,19 @@ const Stack = () => {
       </form>
 
       <div className="w-full max-w-[1000px] mx-auto">
-        <h1 className="text-center mb-4 font-bold text-2xl">
+        <h1 className="text-center mb-4 font-bold text-2xl text-black">
           Tu portolio, {displayName}
         </h1>
 
         {!isLoading && walletUserData.length > 0 && (
-          <div className="grid grid-flow-col ">
-            <p className="text-teal-500 text-center col-span-1">Crypto</p>
-            <p className="text-teal-500 text-center col-span-1">Tienes</p>
-            <p className="text-teal-500 text-center col-span-1">1 hora</p>
-            <p className="text-teal-500 text-center col-span-1">Actualización</p>
-            <p className="text-teal-500 text-center col-span-1">Borrar</p>
+          <div className="grid grid-flow-col justify-items-center">
+            <p className="text-teal-500">Crypto</p>
+            <p className="text-teal-500">Tienes</p>
+            <p className="text-teal-500">1 hora</p>
+            <p className="text-teal-500">
+              Actualización
+            </p>
+            <p className="text-teal-500">Borrar</p>
           </div>
         )}
 
@@ -146,11 +151,11 @@ const Stack = () => {
           <SkeletonCoin count={5} width="100%" height={60} duration={2} />
         )}
         {!isLoading && walletUserData.length === 0 && (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center">
             <EmptyIcon />
 
-            <h1 className="text-2xl mt-4 ">
-              Parece que aun no tenes cryptos en tu billetera, empeza a guardar
+            <h1 className="text-2xl mt-4 mb-8 text-black">
+              Parece que aun no tenes cryptos en tu billetera, empezÃ¡ a guardar
               ahora.
             </h1>
           </div>

@@ -21,8 +21,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const isDataEmpty = () => {
-    console.log(typeof passwordRef.current.value)
-    return emailRef.current.value === "" && passwordRef.current.value === ""
+    return emailRef.current.value === "" || passwordRef.current.value === ""
   }
 
   const handleSubmit = async (e) => {

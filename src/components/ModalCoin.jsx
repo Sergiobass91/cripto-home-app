@@ -1,19 +1,30 @@
 import ReactModal from "react-modal";
+import DownArrowIcon from "../assets/icons/DownArrowIcon";
+import UpArrowIcon from "../assets/icons/UpArrowIcon";
 import { addLocalCurrency, deltaPercentage } from "../models/commonCurrency";
 
 ReactModal.setAppElement("#root");
 
 const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
+
   const handleCloseModal = () => {
     setToClose(false);
   };
+
+  const customStyleRate = (rate) => {
+    return parseFloat(rate) > 1 ? "text-green-500" : "text-red-500";
+  }
+
+  const customResourceRate = (rate) => {
+    return parseFloat(rate) > 1 ? <UpArrowIcon/> : <DownArrowIcon/>;
+  }
 
   const styleForModal = {
     overlay: {
       top: "40%",
       left: "50%",
       width: "80%",
-      height: "500px",
+      height: "300px",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
@@ -22,55 +33,66 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
     },
     content: {
       border: "1px solid #ccc",
-      background: "#293143",
+      background: "#313A50",
       overflow: "auto",
-      WebkitOverflowScrolling: "none",
       borderRadius: "10px",
       outline: "none",
-      padding: "50px",
+      padding: "20px",
     },
   };
 
   return (
     <ReactModal isOpen={onOpen} style={styleForModal}>
-      <div className="grid grid-cols-6">
-        <p></p>
-        <p></p>
-        <p></p>
-        <p className="text-teal-500 text-center">Price</p>
-        <p className="text-teal-500 text-center">Volume</p>
-        <p className="text-teal-500 text-center">Market Capital</p>
-        <p className="text-teal-500 text-center">1 Hour</p>
-        <p className="text-teal-500 text-center">1 Day</p>
-        <p className="text-teal-500 text-center">1 Month</p>
-      </div>
-      <button
-          onClick={handleCloseModal}
-          className="text-white text-2xl absolute top-7"
-        >
-          X
-        </button>
-      <div className="grid grid-flow-col gap-8 pt-8">
 
+      <button onClick={handleCloseModal} className="text-white text-2xl absolute top-4">X</button>
 
-        <div className="flex items-start">
-          <img
-            className="h-full mx-auto"
-            src={coin?.webp64}
-            alt={coin.name}
-          ></img>
-          <div className="">
-            <h1 className="font-bold text-lg text-white">{coin.name}</h1>
-            <p className="font-thin text-white">{coin.code}</p>
+        <div className="grid grid-cols-8 h-full">
+
+          {/* Seccion imagen */}
+          <div className="flex flex-col col-span-2 justify-center items-center">
+            <img
+              className="w-20 h-20"
+              src={coin?.webp64}
+              alt={coin.name}
+            ></img>
+            <div className="text-center">
+              <h1 className="font-bold text-lg text-white">{coin.name}</h1>
+              <p className="font-thin text-white">{coin.code}</p>
+            </div>
+          </div>
+          {/* Seccion imagen */}
+
+        <div className="col-span-6 my-auto">
+          <div className="grid grid-cols-6 gap-8">
+            <div>
+              <h5>Cur. value</h5>
+              <p className="text-white font-semibold">{addLocalCurrency(coin.rate, fiat)}</p>
+            </div>
+            <div>
+              <h5>Max value</h5>
+              <p className="text-white font-semibold">{addLocalCurrency(coin.allTimeHighUSD, fiat)}</p>
+            </div>
+            <div>
+              <h5>Capital</h5>
+              <p className="text-white font-semibold">{addLocalCurrency(coin.cap, fiat)}</p>
+            </div>
+            <div>
+              <h5>Hour</h5>
+              <p className={customStyleRate(coin.delta.hour)}>{deltaPercentage(coin.delta.hour)}</p>
+              {customResourceRate(coin.delta.hour)}
+            </div>
+            <div>
+              <h5>Day</h5>
+              <p className={customStyleRate(coin.delta.day)}>{deltaPercentage(coin.delta.day)}</p>
+              {customResourceRate(coin.delta.day)}
+            </div>
+            <div>
+              <h5>Day</h5>
+              <p className={customStyleRate(coin.delta.month)}>{deltaPercentage(coin.delta.month)}</p>
+              {customResourceRate(coin.delta.month)}
+            </div>
           </div>
         </div>
-
-        <p className="text-white">{addLocalCurrency(coin.rate, fiat)}</p>
-        <p className="text-white">{addLocalCurrency(coin.volume, fiat)}</p>
-        <p className="text-white">{addLocalCurrency(coin.cap, fiat)}</p>
-        <p className="text-white">{deltaPercentage(coin.delta.hour)}</p>
-        <p className="text-white">{deltaPercentage(coin.delta.day)}</p>
-        <p className="text-white">{deltaPercentage(coin.delta.month)}</p>
       </div>
     </ReactModal>
   );
