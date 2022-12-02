@@ -124,7 +124,7 @@ const Stack = () => {
         </div>
         <ButtonForm
           text="Guardar"
-          classes="btn-primary bg-blue-500 hover:bg-blue-700 text-white h-4/5 align-bottom font-boldmt-3 py-2 rounded focus:outline-none focus:shadow-outline"
+          classes="bg-green-500 hover:bg-green-700 text-white h-4/5 align-bottom font-bold mt-3 py-2 rounded focus:outline-none focus:shadow-outline"
         >
           Guardar
         </ButtonForm>
@@ -136,14 +136,14 @@ const Stack = () => {
         </h1>
 
         {!isLoading && walletUserData.length > 0 && (
-          <div className="grid grid-flow-col justify-items-center">
-            <p className="text-teal-500">Crypto</p>
-            <p className="text-teal-500">Tienes</p>
-            <p className="text-teal-500">1 hora</p>
-            <p className="text-teal-500">
+          <div className="hidden sm:grid grid-flow-col justify-items-center font-semibold">
+            <p className="text-black">Crypto</p>
+            <p className="text-black">Tienes</p>
+            <p className="text-black pl-7">1 hora</p>
+            <p className="text-black">
               Actualización
             </p>
-            <p className="text-teal-500">Borrar</p>
+            <p className="text-black">Borrar</p>
           </div>
         )}
 
@@ -155,7 +155,7 @@ const Stack = () => {
             <EmptyIcon />
 
             <h1 className="text-2xl mt-4 mb-8 text-black">
-              Parece que aun no tenes cryptos en tu billetera, empezÃ¡ a guardar
+              Parece que aun no tenes cryptos en tu billetera, empezá a guardar
               ahora.
             </h1>
           </div>

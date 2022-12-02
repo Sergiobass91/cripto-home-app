@@ -35,12 +35,12 @@ const CoinStack = ({ data, handleRemove, infoToSelect }) => {
         className="grid grid-rows-1 grid-cols-1 justify-items-center sm:grid-cols-5 items-center m-auto py-2 bg-[#364056] mb-2 rounded hover:bg-[#3371A7] text-white hover:transition-all hover:duration-100 hover:ease-in"
       >
         <div className="flex flex-col items-center">
-          <img src={data.icon} className="h-10 w-10 hover:-rotate-45"></img>
+          <img src={data.icon} className="h-10 w-10 hover:animate-bounce"></img>
           <p>{data.code}</p>
         </div>
         <div>
           <p className={CustomStyles(data)}>
-            <strong>{valueInCurrency(data)}</strong>
+            <strong>{`u${valueInCurrency(data)}`}</strong>
           </p>
           <p>
             Cantidad: <strong>{data.quantity}</strong>
