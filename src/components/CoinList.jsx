@@ -16,14 +16,31 @@ const CoinList = () => {
   const { currency } = useSelector((state) => state.fiat);
 
   useEffect(() => {
+
+    // const intervalCoins = setInterval(() => {
+
+    //   getCoins("/coins/list", currency, 20, page)
+    //   .then((totalCoins) => {
+    //     setCoins(totalCoins);
+    //     setLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //   })
+
+    // },6000);
+
+    // return () => clearInterval(intervalCoins);
+
     getCoins("/coins/list", currency, 20, page)
-      .then((totalCoins) => {
-        setCoins(totalCoins);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
+    .then((totalCoins) => {
+      setCoins(totalCoins);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(false);
+    })
+
   }, [currency, page, SearchCoins]);
 
   //buscar moneda especifica

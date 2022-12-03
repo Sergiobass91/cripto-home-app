@@ -1,10 +1,21 @@
+import GitHubIcon from "../assets/icons/GitHubIcon";
+
 const Footer = () => {
+
+  const openMyGitHubRepo = () => {
+    return `<a href="https://github.com/sergiobg91/cripto-home-app"></a>`
+    
+  }
+
   return (
-    <div className="h-16 bg-[#58688c] flex items-center justify-center relative bottom-0 w-full font-semibold">
+    <footer className="h-16 bg-[#58688c] flex items-center justify-center gap-2 relative bottom-0 w-full font-semibold">
       <p className="text-white">
-        &copy;2022 Sergio Beltran. All rights reserved.
+        &copy;2022 Sergio Beltran. Derechos reservados.
       </p>
-    </div>
+      <a className="cursor-pointer" href="https://github.com/sergiobg91/cripto-home-app" target="_blank" rel="noopener noreferrer">
+        <GitHubIcon className="fill-white"/>
+      </a>
+    </footer>
   );
 };
 
