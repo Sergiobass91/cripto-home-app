@@ -79,7 +79,7 @@ const CoinList = () => {
         <div className="w-full max-w-[1000px] ">
           <div className="hidden sm:grid grid-cols-12 text-black font-semibold">
             <p className="text-center  col-span-1">Símbolo</p>
-            <p className="text-center col-span-2 pl-2">Crypto</p>
+            <p className="text-center col-span-2 pl-2">Nombre</p>
             <p className="text-center col-span-2">Código</p>
             <p className="text-center col-span-2">Valor</p>
             <p className="text-center col-span-2">Volúmen</p>

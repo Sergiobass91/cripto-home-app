@@ -18,15 +18,16 @@ import { errorToast } from "../models/commonToast";
 const Stack = () => {
   const [infoToSelect, setInfoToSelect] = useState([]);
   const [singleCoin, setSingleCoin] = useState(null);
-  const [code, setCode] = useState(null); //TODO: pasar a ref
-  const [input, setInput] = useState(null); //TODO: pasar a ref
+  const [code, setCode] = useState(null);
+  const [input, setInput] = useState(null);
   const [walletUserData, setWalletUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [reloadUseEffect, SetReloadUseEffect] = useState(null); //TODO: eliminar para buscar mejor dependencia
+  const [reloadUseEffect, SetReloadUseEffect] = useState(null); //TODO: improve array dependency
   const { uid, displayName } = userAuth();
 
   useEffect(() => {
     setIsLoading(true);
+
     //carga datos para la seleccion
     (async () => {
       try {
@@ -35,14 +36,14 @@ const Stack = () => {
           : infoToSelect;
         setWalletUserData(await dataCollection(uid));
       } catch (e) {
-        errorToast("Algo saliÃÂÃÂ³ mal, por favor volvÃÂÃÂ© a intentarlo");
+        errorToast("Algo sali� mal, por favor volv� a intentarlo");
       } finally {
         setIsLoading(false);
       }
     })();
 
-    // setIsLoading(false);
-  }, [singleCoin, reloadUseEffect]);
+    
+  }, [reloadUseEffect]);
 
   //Manejo de cambio en el select
   const fiatHandlerOnChange = async ({ value }) => {
@@ -110,7 +111,7 @@ const Stack = () => {
           ></Select>
         </div>
 
-        <div className="mx-auto">
+        <div className="sm:mx-auto">
           <label htmlFor="quantity">Cantidad: </label>
           <br />
           <input
@@ -132,7 +133,7 @@ const Stack = () => {
 
       <div className="w-full max-w-[1000px] mx-auto">
         <h1 className="text-center mb-4 font-bold text-2xl text-black">
-          Tu portolio, {displayName}
+          Tu porfolio, {displayName}
         </h1>
 
         {!isLoading && walletUserData.length > 0 && (
@@ -154,7 +155,7 @@ const Stack = () => {
           <div className="flex flex-col items-center">
             <EmptyIcon />
 
-            <h1 className="text-2xl mt-4 mb-8 text-black">
+            <h1 className="text-2xl mt-4 mb-8 text-black text-center">
               Parece que aun no tenes cryptos en tu billetera, empezá a guardar
               ahora.
             </h1>

@@ -20,23 +20,30 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
 
   const styleForModal = {
     overlay: {
+      // right: "auto",
+      // bottom: "auto",
+      // marginRight: "-50%",
+      display: "flex",
       top: "40%",
       left: "50%",
       width: "80%",
       height: "300px",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: "transparent",
     },
     content: {
+      // border: "1px solid #ccc",
+      // background: "#313A50",
+      // overflow: "auto",
+      // borderRadius: "10px",
+      // outline: "none",
+      // padding: "20px",
+      borderRadius: "10px",
       border: "1px solid #ccc",
       background: "#313A50",
-      overflow: "auto",
-      borderRadius: "10px",
-      outline: "none",
-      padding: "20px",
+      display: "flex",
+      flexWrap: "wrap"
+
     },
   };
 
@@ -61,7 +68,7 @@ const ModalCoin = ({ onOpen, setToClose, coin, fiat }) => {
         {/* Seccion imagen */}
 
         <div className="col-span-6 my-auto">
-          <div className="grid grid-cols-6 gap-8 justify-items-center">
+          <div className="grid grid-cols-6 gap-1 sm:gap-8 justify-items-center">
             <div>
               <h5>Valor</h5>
               <p className="text-white font-semibold">
