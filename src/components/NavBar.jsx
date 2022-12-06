@@ -5,16 +5,15 @@ import { setAuth } from "../reducers/authSlice";
 import LogoIcon from "../assets/icons/LogoIcon";
 
 const NavBar = () => {
-
   const { logged } = useSelector((state) => state.login);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleLogOut = async () => {
     await logOut();
-    dispatch(setAuth({logged: false}))
-    return <Navigate to="/"/>;
-  }
+    dispatch(setAuth({ logged: false }));
+    return <Navigate to="/" />;
+  };
 
   return (
     <ul className="md:flex gap-4 text-2xl justify-between pt-2">
@@ -33,28 +32,31 @@ const NavBar = () => {
               to="signup"
             >
               {" "}
-              <strong>Sign up</strong>
+              <strong>Crear cuenta</strong>
             </Link>
             <Link
               className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4"
               to="login"
             >
               {" "}
-              <strong>Log in</strong>
+              <strong>Iniciar sesión</strong>
             </Link>
           </>
         )) || (
           <>
-            <Link className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4" to="wallet">
+            <Link
+              className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4"
+              to="wallet"
+            >
               {" "}
-              <strong>My Wallet</strong>
+              <strong>Mi billetera</strong>
             </Link>
             <button
               onClick={handleLogOut}
               className="hover:text-green-400 text-base border-zinc-500 border bg-[#232a3b] p-2 rounded px-4"
               to="about"
             >
-              <strong>Log out</strong>
+              <strong>Cerrar sesión</strong>
             </button>
           </>
         )}

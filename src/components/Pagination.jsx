@@ -17,7 +17,7 @@ const Pagination = ({
         debounceTimeout={300}
         onChange={handleChange}
         value={search}
-        placeholder="Buscar crypto..."
+        placeholder="Buscar cripto..."
       ></DebounceInput>
       <div className="flex justify-center items-center space-x-3">
         {SearchCoins.length === 0 && (

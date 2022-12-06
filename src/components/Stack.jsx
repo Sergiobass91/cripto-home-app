@@ -138,7 +138,7 @@ const Stack = () => {
 
         {!isLoading && walletUserData.length > 0 && (
           <div className="hidden sm:grid grid-flow-col justify-items-center font-semibold">
-            <p className="text-black">Crypto</p>
+            <p className="text-black">Cripto</p>
             <p className="text-black">Tienes</p>
             <p className="text-black pl-7">1 hora</p>
             <p className="text-black">
@@ -156,7 +156,7 @@ const Stack = () => {
             <EmptyIcon />
 
             <h1 className="text-2xl mt-4 mb-8 text-black text-center">
-              Parece que aun no tenes cryptos en tu billetera, empezá a guardar
+              Parece que aun no tenes criptos en tu billetera, empezá a guardar
               ahora.
             </h1>
           </div>
