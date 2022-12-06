@@ -10,20 +10,17 @@ const Overview = () => {
 
   useEffect(() => {
 
-    // const intervalOveview = setInterval(() => {
-      
-    //   (async () => {
-    //     setOverwise(await getOverview("/overview", currency));
-    //   })();
+    const intervalOveview = setInterval(() => {
+      (async () => {
+        setOverwise(await getOverview("/overview", currency));
+      })();
+    }, 1000)
 
-    // }, 6000)
+    return () => clearInterval(intervalOveview);
 
-    // return () => clearInterval(intervalOveview);
-
-      
-    (async () => {
-      setOverwise(await getOverview("/overview", currency));
-    })();
+    // (async () => {
+    //   setOverwise(await getOverview("/overview", currency));
+    // })();
 
   }, [currency]);
 

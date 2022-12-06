@@ -17,29 +17,29 @@ const CoinList = () => {
 
   useEffect(() => {
 
-    // const intervalCoins = setInterval(() => {
+    const intervalCoins = setInterval(() => {
 
-    //   getCoins("/coins/list", currency, 20, page)
-    //   .then((totalCoins) => {
-    //     setCoins(totalCoins);
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //   })
+      getCoins("/coins/list", currency, 20, page)
+      .then((totalCoins) => {
+        setCoins(totalCoins);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      })
 
-    // },6000);
+    }, 1000);
 
-    // return () => clearInterval(intervalCoins);
+    return () => clearInterval(intervalCoins);
 
-    getCoins("/coins/list", currency, 20, page)
-    .then((totalCoins) => {
-      setCoins(totalCoins);
-      setLoading(false);
-    })
-    .catch((err) => {
-      setLoading(false);
-    })
+    // getCoins("/coins/list", currency, 20, page)
+    // .then((totalCoins) => {
+    //   setCoins(totalCoins);
+    //   setLoading(false);
+    // })
+    // .catch((err) => {
+    //   setLoading(false);
+    // })
 
   }, [currency, page, SearchCoins]);
 

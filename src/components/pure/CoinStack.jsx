@@ -18,6 +18,26 @@ const CoinStack = ({ data, handleRemove, infoToSelect }) => {
     return addLocalCurrency(amountInWallet, "USD");
   };
 
+  // const diferenceAmount = (data) => {
+  //   const currentValue = infoToSelect[findIndexCode(data.code)].rate;
+  //   let amount, isMajor;
+  //   if (data.initValue < currentValue) {
+  //     console.log("IF diferenceAmount ~ data.initValue < currentValue", data.initValue, currentValue)
+  //     amount = currentValue - data.initValue;
+  //     isMajor = false;
+  //   }
+  //   else if (data.initValue > currentValue) {
+  //     console.log("ELSE IF diferenceAmount ~ data.initValue < currentValue", data.initValue, currentValue)
+  //     amount = data.initValue - currentValue;
+  //     isMajor = true;
+  //   }
+  //   else {
+  //     return "$0.00"
+  //   }
+  //   amount = addLocalCurrency(amount, "USD")
+  //   return isMajor ? `+${amount}` : `-${amount}`;
+  // }
+
   //Estilos variables en funcion de valor actual vs valor almacenado
   const CustomStyles = (data) => {
     const currentValue = infoToSelect[findIndexCode(data.code)].rate;
@@ -45,6 +65,9 @@ const CoinStack = ({ data, handleRemove, infoToSelect }) => {
           <p>
             Cantidad: <strong>{data.quantity}</strong>
           </p>
+          {/* <p>
+            Diferencia: <strong>{diferenceAmount(data)}</strong>
+          </p> */}
         </div>
         <p>
           {deltaPercentage(infoToSelect[findIndexCode(data.code)].delta.hour)}
