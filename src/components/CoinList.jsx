@@ -28,7 +28,7 @@ const CoinList = () => {
         setLoading(false);
       })
 
-    }, 1000);
+    }, 10000);
 
     return () => clearInterval(intervalCoins);
 
