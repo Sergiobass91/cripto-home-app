@@ -14,7 +14,7 @@ const Overview = () => {
       (async () => {
         setOverwise(await getOverview("/overview", currency));
       })();
-    }, 10000)
+    }, 2000)
 
     return () => clearInterval(intervalOveview);
 
