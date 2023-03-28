@@ -5,7 +5,7 @@ import DeletedIcon from "../../assets/icons/DeleteIcon";
 const CoinStack = ({ data, handleRemove, infoToSelect }) => {
 
 
-  //Encuentra index del array de cryptos segun codigo de moneda, para otras funcioes
+  //Encuentra index del array de cryptos segun codigo de moneda, para otras funcions
   const findIndexCode = (wallletCode) => {
     const index = infoToSelect.findIndex((coin) => coin.code === wallletCode);
     return index;
